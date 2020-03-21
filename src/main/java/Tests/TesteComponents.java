@@ -1,102 +1,81 @@
 package Tests;
+
+import static model.core.DriverFactory.getDriver;
+
 import java.util.List;
 
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import junit.framework.Assert;
+import model.core.BaseTest;
 
-public class TesteComponents {
+public class TesteComponents extends BaseTest {
 
-	@SuppressWarnings("deprecation")
+	@Before
+	public void beforeTest() {
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//driver//chromedriver.exe");
+		getDriver().manage().window().setSize(new Dimension(1200, 760));
+		getDriver().get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
+	}
+
 	@Test
 	public void TestComponentsInput() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
-		driver.findElement(By.xpath("//input[@id='elementosForm:nome']")).sendKeys("TesteComponentsInput");
+		getDriver().findElement(By.xpath("//input[@id='elementosForm:nome']")).sendKeys("TesteComponentsInput");
 		Assert.assertEquals("TesteComponentsInput",
-				driver.findElement(By.xpath("//input[@id='elementosForm:nome']")).getAttribute("value"));
+				getDriver().findElement(By.xpath("//input[@id='elementosForm:nome']")).getAttribute("value"));
 
-		driver.quit();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void TestComponentsTextArea() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
-		driver.findElement(By.xpath("//textarea[@id='elementosForm:sugestoes']")).sendKeys("TesteComponentsTextArea");
+		getDriver().findElement(By.xpath("//textarea[@id='elementosForm:sugestoes']"))
+				.sendKeys("TesteComponentsTextArea");
 		Assert.assertEquals("TesteComponentsTextArea",
-				driver.findElement(By.xpath("//textarea[@id='elementosForm:sugestoes']")).getAttribute("value"));
-
-		driver.quit();
+				getDriver().findElement(By.xpath("//textarea[@id='elementosForm:sugestoes']")).getAttribute("value"));
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void TestComponentsRadioButton() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
-		driver.findElement(By.xpath("//input[@id='elementosForm:sexo:0']")).click();
-		Assert.assertTrue(driver.findElement(By.xpath("//input[@id='elementosForm:sexo:0']")).isSelected());
+		getDriver().findElement(By.xpath("//input[@id='elementosForm:sexo:0']")).click();
+		Assert.assertTrue(getDriver().findElement(By.xpath("//input[@id='elementosForm:sexo:0']")).isSelected());
 
-		driver.quit();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void TestComponentsCheckedBox() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
-		
 		for (int i = 0; i < 4; i++) {
-			driver.findElement(By.xpath("//input[@id='elementosForm:comidaFavorita:" + i + "']")).click();
-			Assert.assertTrue(
-					driver.findElement(By.xpath("//input[@id='elementosForm:comidaFavorita:" + i + "']")).isSelected());
+			getDriver().findElement(By.xpath("//input[@id='elementosForm:comidaFavorita:" + i + "']")).click();
+			Assert.assertTrue(getDriver().findElement(By.xpath("//input[@id='elementosForm:comidaFavorita:" + i + "']"))
+					.isSelected());
 		}
 
-		driver.quit();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void TestComponentsComboBox() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
-		
-		WebElement element = driver.findElement(By.xpath("//select[@id='elementosForm:escolaridade']"));
+
+		WebElement element = getDriver().findElement(By.xpath("//select[@id='elementosForm:escolaridade']"));
 		Select combo = new Select(element);
 		// combo.selectByIndex(3);
 		// combo.selectByValue("1graucomp");
 		combo.selectByVisibleText("2o grau incompleto");
 
-		driver.quit();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void TestComponentsVerifiedComboBox() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
-		
-		WebElement element = driver.findElement(By.xpath("//select[@id='elementosForm:escolaridade']"));
+		WebElement element = getDriver().findElement(By.xpath("//select[@id='elementosForm:escolaridade']"));
 		Select combo = new Select(element);
 		List<WebElement> options = combo.getOptions();
 		Assert.assertEquals(8, options.size());
@@ -111,17 +90,12 @@ public class TesteComponents {
 		}
 
 		Assert.assertTrue(finded);
-		driver.quit();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void TestComponentsMultipliesComboBox() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
-		WebElement element = driver.findElement(By.xpath("//select[@id='elementosForm:esportes']"));
+		WebElement element = getDriver().findElement(By.xpath("//select[@id='elementosForm:esportes']"));
 		Select combo = new Select(element);
 //		List<WebElement> options = combo.getOptions();
 //		boolean finded = false;
@@ -135,43 +109,33 @@ public class TesteComponents {
 //			}
 //		}
 //		Assert.assertTrue(finded);
-		
+
 		List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(3, allSelectedOptions.size());
-		
-		driver.quit();
+
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	@Test
 	public void TestComponentsButtonClick() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
-		WebElement btnClick = driver.findElement(By.xpath("//input[@id='buttonSimple']"));
+		WebElement btnClick = getDriver().findElement(By.xpath("//input[@id='buttonSimple']"));
 		btnClick.click();
 		Assert.assertEquals("Obrigado!", btnClick.getAttribute("value"));
 
-		
-		driver.quit();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void TestComponentsTextInPage() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
-		
-//		Assert.assertTrue(driver.findElement(By.tagName("body"))
+
+//		Assert.assertTrue(getDriver().findElement(By.tagName("body"))
 //				.getText().contains("Campo de Treinamento"));
-		
-		Assert.assertEquals("Campo de Treinamento",driver.findElement(By.xpath("//h3[text()='Campo de Treinamento']")).getText());
-		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...",driver.findElement(By.xpath("//span[@class='facilAchar']")).getText());
-		
-		driver.quit();
+
+		Assert.assertEquals("Campo de Treinamento",
+				getDriver().findElement(By.xpath("//h3[text()='Campo de Treinamento']")).getText());
+		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...",
+				getDriver().findElement(By.xpath("//span[@class='facilAchar']")).getText());
+
 	}
 
 }

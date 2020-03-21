@@ -1,19 +1,27 @@
 package Tests;
+import static model.core.DriverFactory.getDriver;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TestGoogle {
+import model.core.BaseTest;
 
-	@Test
-	public void test(){
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200,765));
-		driver.get("http://www.google.com");
-		System.out.println(driver.getTitle());
-		driver.quit();
+public class TestGoogle extends BaseTest {
+
+
+	@Before
+	public void beforeTest() {
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//driver//chromedriver.exe");
+		getDriver().manage().window().setSize(new Dimension(1200, 765));
 	}
 	
 	
+	@Test
+	public void test() {
+		
+		getDriver().get("http://www.google.com");
+		System.out.println(getDriver().getTitle());
+	}
+
 }

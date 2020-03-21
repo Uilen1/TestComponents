@@ -1,25 +1,24 @@
 package model.scenarios;
 
+import static model.core.DriverFactory.getDriver;
+
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
+import model.core.BaseTest;
 import model.pages.MainPage;
 
 @RunWith(Parameterized.class)
-public class Scenarios{
+public class Scenarios extends BaseTest{
 
-	private MainPage mainPage;
-	private WebDriver driver;
+	private MainPage mainPage = new MainPage();
 	
 	@Parameter(value=0)
 	public String name;
@@ -48,14 +47,8 @@ public class Scenarios{
 	
 	@Before
 	public void beforeTest() {
-		driver = new FirefoxDriver();
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
-		mainPage = new MainPage(driver);
-	}
-	
-	@After
-	public void afterTest() {
-		driver.quit();
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//driver//chromedriver.exe");
+		getDriver().get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
 	}
 	
 	@Test

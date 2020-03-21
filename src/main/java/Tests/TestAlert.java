@@ -1,43 +1,46 @@
 package Tests;
+import static model.core.DriverFactory.getDriver;
+
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TestAlert {
+import model.core.BaseTest;
+
+public class TestAlert extends BaseTest{
+	
+	@Before
+	public void beforeTest() {
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//driver//chromedriver.exe");
+	}
 
 	@Test
 	public void TestComponentsInteractWithAlert() {
-
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
+		getDriver().manage().window().setSize(new Dimension(1200, 760));
+		getDriver().get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
 		
-		driver.findElement(By.xpath("//input[@id='alert']")).click();
-		Alert alert = driver.switchTo().alert();
+		getDriver().findElement(By.xpath("//input[@id='alert']")).click();
+		Alert alert = getDriver().switchTo().alert();
 		String text = alert.getText();
 		Assert.assertEquals("Alert Simples", text);
 		alert.accept();
 		
-		driver.findElement(By.xpath("//input[@id='elementosForm:nome']"))
+		getDriver().findElement(By.xpath("//input[@id='elementosForm:nome']"))
 			.sendKeys(text);
-		
-		
-		//driver.quit();
+
 	}
 	
 	@Test
 	public void TestComponentsAlertConfirm() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
+		getDriver().manage().window().setSize(new Dimension(1200, 760));
+		getDriver().get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
 		
-		driver.findElement(By.xpath("//input[@id='confirm']")).click();
-		Alert alert = driver.switchTo().alert();
+		getDriver().findElement(By.xpath("//input[@id='confirm']")).click();
+		Alert alert = getDriver().switchTo().alert();
 		String text = alert.getText();
 		Assert.assertEquals("Confirm Simples", text);
 		alert.accept();
@@ -45,37 +48,33 @@ public class TestAlert {
 		Assert.assertEquals("Confirmado", confirm);
 		alert.accept();
 		
-		//driver.quit();
 	}
 	
 	@Test
 	public void TestComponentsAlertConfirm2() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
+		getDriver().manage().window().setSize(new Dimension(1200, 760));
+		getDriver().get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
 		
-		driver.findElement(By.xpath("//input[@id='confirm']")).click();
-		Alert alert = driver.switchTo().alert();
+		getDriver().findElement(By.xpath("//input[@id='confirm']")).click();
+		Alert alert = getDriver().switchTo().alert();
 		String text = alert.getText();
 		Assert.assertEquals("Confirm Simples", text);
 		alert.dismiss();
 
 		Assert.assertEquals("Negado", alert.getText());
 		alert.accept();
-		
-		//driver.quit();
+
 	}
 	
 	@Test
 	public void TestComponentsAlertPrompt() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
+		getDriver().manage().window().setSize(new Dimension(1200, 760));
+		getDriver().get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
 		
-		driver.findElement(By.xpath("//input[@id='prompt']")).click();
-		Alert alert = driver.switchTo().alert();
+		getDriver().findElement(By.xpath("//input[@id='prompt']")).click();
+		Alert alert = getDriver().switchTo().alert();
 		Assert.assertEquals("Digite um numero", alert.getText());
 		alert.sendKeys("12");
 		alert.accept();
@@ -86,18 +85,16 @@ public class TestAlert {
 		Assert.assertEquals(":D", alert.getText());
 		alert.accept();
 		
-		//driver.quit();
 	}
 	
 	@Test
 	public void TestComponentsAlertPrompt2() {
 
-		WebDriver driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 760));
-		driver.get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
+		getDriver().manage().window().setSize(new Dimension(1200, 760));
+		getDriver().get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
 		
-		driver.findElement(By.xpath("//input[@id='prompt']")).click();
-		Alert alert = driver.switchTo().alert();
+		getDriver().findElement(By.xpath("//input[@id='prompt']")).click();
+		Alert alert = getDriver().switchTo().alert();
 		Assert.assertEquals("Digite um numero", alert.getText());
 		alert.dismiss();
 
@@ -106,7 +103,5 @@ public class TestAlert {
 		
 		Assert.assertEquals(":(", alert.getText());
 		alert.accept();
-		
-		//driver.quit();
 	}
 }
