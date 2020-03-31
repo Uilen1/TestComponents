@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 import model.core.BaseTest;
@@ -20,22 +19,26 @@ public class Scenarios extends BaseTest{
 
 	private MainPage mainPage = new MainPage();
 	
-	@Parameter(value=0)
 	public String name;
-	@Parameter(value=1)
 	public String surname;
-	@Parameter(value=2)
 	public String sex;
-	@Parameter(value=3)
 	public String food;
-	@Parameter(value=4)
 	public String scholarLevel;
-	@Parameter(value=5)
 	public String[] sports;
-	@Parameter(value=6)
 	public String text;
 	
-	@Parameters
+	public Scenarios(String name, String surname, String sex, String food, String scholarLevel, String[] sports, String text) {
+		super(name);
+		this.name = name;
+		this.surname = surname;
+		this.sex = sex;
+		this.food = food;
+		this.scholarLevel = scholarLevel;
+		this.sports = sports;
+		this.text = text;
+	}
+	
+	@Parameters(name = "Testing with name of_ {0}")
 	public static Collection<Object[]> parametersToTest() {
 		return Arrays.asList(new Object[][] {
 			{"Uilen Helei","Lelles Moreira","Masculino","Pizza","Superior",new String[]{"Futebol","Karate","Natacao"},"Testando a Bagaça!"},
@@ -49,6 +52,7 @@ public class Scenarios extends BaseTest{
 	public void beforeTest() {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//driver//chromedriver.exe");
 		getDriver().get("file:///" + System.getProperty("user.dir") + "//ComponentesHTML//componentes.html");
+		getDriver().manage().window().maximize();
 	}
 	
 	@Test

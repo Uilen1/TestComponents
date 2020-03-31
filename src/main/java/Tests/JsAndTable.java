@@ -26,7 +26,7 @@ public class JsAndTable extends BaseTest {
 	public void javascriptTest() {
 		try {
 			WebElement frame = getDriver().findElement(By.id("frame2"));
-			utils.executarJavascript("window.scrollBy(0,arguments[0])", frame.getLocation().y);
+			executarJavascript("window.scrollBy(0,arguments[0])", frame.getLocation().y);
 			utils.goFrame("frame2");
 			utils.click("frameButton");
 			String msg = utils.getAlertTextAndClick();

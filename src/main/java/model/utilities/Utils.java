@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -60,11 +59,6 @@ public class Utils {
 		}
 		
 		return finded; 
-	}
-	
-	public void executarJavascript(String cmd, Object... params) {
-		JavascriptExecutor js = (JavascriptExecutor) getDriver();
-		js.executeScript(cmd, params);
 	}
 	
 	public void goFrame(String frame) {
