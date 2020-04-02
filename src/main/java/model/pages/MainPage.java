@@ -8,52 +8,52 @@ public class MainPage extends BasePage {
 		
 	}
 
-	public void register() {
-		utils.click("elementosForm:cadastrar");
+	public void register(String nameStep) {
+		utils.click("elementosForm:cadastrar", nameStep);
 	}
 
-	public void writeName(String name) {
-		utils.write("elementosForm:nome", name);
+	public void writeName(String name,String nameStep) {
+		utils.write("elementosForm:nome", name, nameStep);
 	}
 
-	public void writeSurname(String surname) {
-		utils.write("elementosForm:sobrenome", surname);
+	public void writeSurname(String surname,String nameStep) {
+		utils.write("elementosForm:sobrenome", surname, nameStep);
 	}
 
-	public void selectUserSex(String sexo) {
+	public void selectUserSex(String sexo, String nameStep) {
 		if (sexo == "Masculino") {
-			utils.click("elementosForm:sexo:0");
+			utils.click("elementosForm:sexo:0", nameStep);
 		} else if (sexo == "Feminino") {
-			utils.click("elementosForm:sexo:1");
+			utils.click("elementosForm:sexo:1", nameStep);
 		}
 	}
 
-	public void selectUserFood(String food) {
+	public void selectUserFood(String food, String nameStep) {
 		if (food == "Carne") {
-			utils.click("elementosForm:comidaFavorita:0");
+			utils.click("elementosForm:comidaFavorita:0",nameStep);
 		} else if (food == "Frango") {
-			utils.click("elementosForm:comidaFavorita:1");
+			utils.click("elementosForm:comidaFavorita:1",nameStep);
 		} else if (food == "Pizza") {
-			utils.click("elementosForm:comidaFavorita:2");
+			utils.click("elementosForm:comidaFavorita:2",nameStep);
 		} else if (food == "Vegetariano") {
-			utils.click("elementosForm:comidaFavorita:3");
+			utils.click("elementosForm:comidaFavorita:3",nameStep);
 		}
 
 	}
 
-	public void choiceScholarLevel(String ScholarLevel) {
-		utils.selectItemCombo(ScholarLevel, "elementosForm:escolaridade");
+	public void choiceScholarLevel(String ScholarLevel,String nameStep) {
+		utils.selectItemCombo(ScholarLevel, "elementosForm:escolaridade",nameStep);
 	}
 
-	public void selectUserSports(String... sports) {
+	public void selectUserSports(String nameStep,String... sports) {
 		for (String sport : sports) {
-			utils.selectItemCombo(sport, "elementosForm:esportes");
+			utils.selectItemCombo(sport, "elementosForm:esportes",nameStep);
 		}
 
 	}
 
-	public void writeSugestions(String sugestion) {
-		utils.write("textarea", "elementosForm:sugestoes", sugestion);
+	public void writeSugestions(String sugestion,String nameStep) {
+		utils.write("textarea", "elementosForm:sugestoes", sugestion, nameStep);
 	}
 
 }

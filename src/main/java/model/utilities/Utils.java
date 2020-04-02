@@ -14,21 +14,29 @@ import org.openqa.selenium.support.ui.Select;
 import model.map.mapComponentes;
 
 public class Utils {
+	
+	public GetScreenShoot getScreenShoot = new GetScreenShoot();
 
-	public void click(String elementToBeClickable) {
+	public void click(String elementToBeClickable, String nameStep) {
 		getDriver().findElement(By.xpath(mapComponentes.elementInput(elementToBeClickable))).click();
+		GetScreenShoot.getEvidenceElement(nameStep, getDriver().findElement(By.xpath(mapComponentes.elementInput(elementToBeClickable))));
+
 	}
 	
-	public void write(String element, String text) {
+	public void write(String element, String text,String nameStep) {
 		getDriver().findElement(By.xpath(mapComponentes.elementInput(element))).sendKeys(text);
+		GetScreenShoot.getEvidenceElement(nameStep, getDriver().findElement(By.xpath(mapComponentes.elementInput(element))));
+
 	}
 	
-	public void write(String tagName, String element, String text) {
+	public void write(String tagName, String element, String text, String nameStep) {
 		getDriver().findElement(By.xpath(mapComponentes.elementInput(element, tagName))).sendKeys(text);
+		GetScreenShoot.getEvidenceElement(nameStep, getDriver().findElement(By.xpath(mapComponentes.elementInput(element, tagName))));
+
 	}
 
 	public Object obtainedText(String element) {
-		return getDriver().findElement(By.xpath(mapComponentes.elementInput(element))).getAttribute("value") ;
+		return getDriver().findElement(By.xpath(mapComponentes.elementInput(element))).getAttribute("value");
 	}
 	
 	public Object obtainedText(String tagName,String element) {
@@ -39,11 +47,14 @@ public class Utils {
 		return getDriver().findElement(By.xpath(mapComponentes.elementInput(element))).isSelected();
 	}
 	
-	public void selectItemCombo(String item, String element) {
+	public void selectItemCombo(String item, String element,String nameStep) {
 		WebElement elementWeb = getDriver().findElement(By.xpath(mapComponentes.elementSelected(element)));
 		Select combo = new Select(elementWeb);
 		combo.selectByVisibleText(item);
+		GetScreenShoot.getEvidenceElement(nameStep, elementWeb);
+
 	}
+	
 	
 	public boolean obtainedItemCombo(String item, String element) {
 		WebElement elementWeb = getDriver().findElement(By.xpath(mapComponentes.elementSelected(element)));
@@ -98,9 +109,11 @@ public class Utils {
 		return cont;
 	}
 	
-	public void clickInputTable(int idColumnButton, int idRow) {
+	public void clickInputTable(int idColumnButton, int idRow, String nameStep) {
 		WebElement tableButton = getDriver().findElement(By.xpath(mapComponentes.inputTable(idColumnButton, idRow)));
 		tableButton.click();
+		GetScreenShoot.getEvidenceElement(nameStep, tableButton);
+
 	}
 	
 	

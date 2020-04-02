@@ -6,7 +6,7 @@ public class Properties {
 	
 	public static final String EVIDENCE_ARGS = "0 0 255 5";
 	
-	public static boolean CLOSE_BROWNSER = false;
+	public static boolean CLOSE_BROWNSER = true;
 	
 	public static enumDriver brownser = enumDriver.CHROME;
 	

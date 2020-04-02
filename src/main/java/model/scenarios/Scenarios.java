@@ -58,14 +58,14 @@ public class Scenarios extends BaseTest{
 	@Test
 	public void registerUser() {
 		try {
-			mainPage.writeName(name);
-			mainPage.writeSurname(surname);
-			mainPage.selectUserSex(sex);
-			mainPage.selectUserFood(food);
-			mainPage.choiceScholarLevel(scholarLevel);
-			mainPage.selectUserSports(sports);
-			mainPage.writeSugestions(text);
-			mainPage.register();
+			mainPage.writeName(name,"Escrever_Nome");
+			mainPage.writeSurname(surname, "Escrever_SobreNome");
+			mainPage.selectUserSex(sex, "Escolher_Sexo");
+			mainPage.selectUserFood(food,"Escolher_Comida");
+			mainPage.choiceScholarLevel(scholarLevel,"NivelEscolar");
+			mainPage.selectUserSports("Esporte",sports);
+			mainPage.writeSugestions(text,"Esvrever_Sugestão");
+			mainPage.register("Cadastrar");
 			
 		} catch (Exception e) {
 			
