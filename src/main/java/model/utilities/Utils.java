@@ -16,6 +16,10 @@ import model.map.mapComponentes;
 public class Utils {
 	
 	public GetScreenShoot getScreenShoot = new GetScreenShoot();
+	
+	public void click(String elementToBeClickable) {
+		getDriver().findElement(By.xpath(mapComponentes.elementInput(elementToBeClickable))).click();
+	}
 
 	public void click(String elementToBeClickable, String nameStep) {
 		getDriver().findElement(By.xpath(mapComponentes.elementInput(elementToBeClickable))).click();

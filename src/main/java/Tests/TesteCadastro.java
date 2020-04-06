@@ -23,29 +23,29 @@ public class TesteCadastro extends BaseTest{
 	@Test
 	public void register() {
 
-		utils.click("elementosForm:nome");
-		utils.write("elementosForm:nome", "Uilen Helei");
+		utils.click("elementosForm:nome","name");
+		utils.write("elementosForm:nome", "Uilen Helei","writeName");
 		Assert.assertEquals("Uilen Helei", utils.obtainedText("elementosForm:nome"));
 
-		utils.click("elementosForm:sobrenome");
-		utils.write("elementosForm:sobrenome", "Lelles Moreira");
+		utils.click("elementosForm:sobrenome","surname");
+		utils.write("elementosForm:sobrenome", "Lelles Moreira","writeSurname");
 		Assert.assertEquals("Lelles Moreira", utils.obtainedText("elementosForm:sobrenome"));
 
-		utils.click("elementosForm:sexo:0");
+		utils.click("elementosForm:sexo:0","sexo");
 		Assert.assertTrue(utils.elementRadioIsSelected("elementosForm:sexo:0"));
 
-		utils.click("elementosForm:comidaFavorita:2");
+		utils.click("elementosForm:comidaFavorita:2","Comida");
 		Assert.assertTrue(utils.elementRadioIsSelected("elementosForm:comidaFavorita:2"));
 
-		utils.selectItemCombo("Superior", "elementosForm:escolaridade");
+		utils.selectItemCombo("Superior", "elementosForm:escolaridade","clickItem");
 		Assert.assertTrue(utils.obtainedItemCombo("Superior", "elementosForm:escolaridade"));
 
-		utils.selectItemCombo("Futebol", "elementosForm:esportes");
+		utils.selectItemCombo("Futebol", "elementosForm:esportes","clickItem");
 
-		utils.write("textarea", "elementosForm:sugestoes", "Teste");
+		utils.write("textarea", "elementosForm:sugestoes", "Teste","writeSugestion");
 		Assert.assertEquals("Teste", utils.obtainedText("textarea", "elementosForm:sugestoes"));
 
-		utils.click("elementosForm:cadastrar");
+		utils.click("elementosForm:cadastrar","clickCadastrar");
 
 	}
 

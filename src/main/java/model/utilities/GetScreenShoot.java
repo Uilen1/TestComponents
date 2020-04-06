@@ -37,7 +37,7 @@ public class GetScreenShoot extends BaseTest {
 				TakesScreenshot takeSs = (TakesScreenshot) getDriver();
 				File file = takeSs.getScreenshotAs(OutputType.FILE);
 				FileUtils.copyFile(file, new File(System.getProperty("user.dir") + ""+File.separator+"outPut"
-									+File.separator+""+sdf.format(timeStamps)+""+File.separator+""+evidenceCount+""+nameTest+".png"));
+									+File.separator+""+sdf.format(timeStamps)+""+File.separator+""+"00"+evidenceCount+"_"+nameTest+".png"));
 				higthlight(nameTest, element);
 				evidenceCount++;
 			}
@@ -74,7 +74,7 @@ public class GetScreenShoot extends BaseTest {
 	protected static void higthlight(String name, WebElement... elements) {
 		if (DISABLE_ELEMENT_HIGHLIGHTS)
 			return;
-		String imagePath = evidencePath + "/"+evidenceCount + name + ".png";
+		String imagePath = evidencePath + "/"+"00"+evidenceCount+"_"+name+".png";
 
 		try {
 			String[] rectArgs = Properties.EVIDENCE_ARGS.split(" ");

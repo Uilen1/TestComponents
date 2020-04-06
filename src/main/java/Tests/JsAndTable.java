@@ -47,7 +47,7 @@ public class JsAndTable extends BaseTest {
 
 		int idColumnButton = utils.getColumn("Radio");
 
-		utils.clickInputTable(idColumnButton, idRow);
+		utils.clickInputTable(idColumnButton, idRow,"PrintClick");
 
 	}
 
